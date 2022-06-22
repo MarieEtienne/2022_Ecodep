@@ -1,7 +1,7 @@
 ---
 title: "Statistical methods for  movement ecology"
 author: Marie-Pierre Etienne
-institute: ""
+institute: "Ecodep"
 date: "2022"
 csl: "../resources/apa-no-doi-no-issue.csl"
 output:
@@ -227,8 +227,10 @@ Often analysed using discrete time model  `r Citep(myBib, "mcclintock2014discret
 
 
 ---
+name:signal
 
-# Segmentation 
+# Signal processing methods 
+--
 
 ##  Heterogeneity in movement pattern interpretated as different internal states
 
@@ -242,18 +244,15 @@ Often analysed using discrete time model  `r Citep(myBib, "mcclintock2014discret
 .pull-right[
 ## Accounting for internal states
 
-Classically addressed with Hidden Markov Model 
+ * Classically addressed with Hidden Markov Model `r Citep(myBib, c("morales2004extracting", "walker2010pioneer", "gurarie2009novel", "michelot2016movehmm"))`
 
-
-### Exploring the change point detection approach. `r Citep(myBib, c("lavielle2005using", "picard2007segmentation"))`
+ * or change point detection approach. `r Citep(myBib, "patin2019identifying")` based on `r Citep(myBib, "picard2007segmentation")`
 ]
 
 ---
 
-# Segmentation 
+template: signal
 
-
-## Signal processing approach for movement ecology `r Citep(myBib, "picard2007segmentation")`
 
 
 .pull-left[
@@ -261,10 +260,6 @@ Classically addressed with Hidden Markov Model
   <img src="segmentation.png" alt="at the beginning is" style="width:90%" class = "centerimg" />
 .legend[Change point detection `r Citep(myBib, "patin2019identifying")`]
 </figure>
-
-Let $\boldsymbol{\tau}={\tau_1,...,\tau_{K-1}}$ ( $\tau_0=-1$ ) be a partition in K segments of $\{1,\ldots n\}$
-$$\boldsymbol{X}_{i}\overset{i.i.d}{\sim}\mathcal{L}(\theta_k),\quad \forall i \in \{ \tau_{k-1}+1:\tau_k \}$$
-The .care[Dynamic Programming algorithm] allows to explore efficiently all possible segmentation and to estimate $\boldsymbol{\hat{\tau}}$
 ]
 
 
@@ -274,40 +269,13 @@ The .care[Dynamic Programming algorithm] allows to explore efficiently all possi
   <img src="seg_classification.png" alt="at the beginning is" style="width:90%" class = "centerimg" />
  .legend[Change point detection and classification `r Citep(myBib, "patin2019identifying")`]
 </figure>
-
-Let  $Z_k$ stand for the class of segment $k,$ $\forall i \in \{ \tau_{k-1}+1:\tau_k \}$ 
-$$Z_k \overset{i.i.d}{\sim} \mathcal{M}(\pi), \quad\boldsymbol{X}_{i}\vert Z_k=l \overset{i.i.d}{\sim}\mathcal{L}(\theta_l)$$
-The Dynamic Programming coupled with EM algorithm allows to explore efficiently all possible segmentation and to estimate $\boldsymbol{\hat{\tau}}$
 ]
 
 --
 
 In  `r Citep(myBib, "patin2019identifying")` : a direct extension to simultaneous segmentation for home range shift.
+--
 
-
----
-
-# Segmentation 
-
-
-## Signal processing approach for movement ecology `r Citep(myBib, c("lavielle2005using", "picard2007segmentation"))`
-
-
-.pull-left[
-<figure>
-  <img src="segmentation.png" alt="at the beginning is" style="width:90%" class = "centerimg" />
- .legend[Change point detection `r Citep(myBib, "patin2019identifying")`]
-</figure>
-
-]
-
-
-.pull-right[
-<figure>
-  <img src="seg_classification.png" alt="at the beginning is" style="width:90%" class = "centerimg" />
-  .legend[Change point detection and classification `r Citep(myBib, "patin2019identifying")`]
-</figure>
-]
 
 .question[Movement path is more than time series, importance of considering the space.]
 
@@ -477,7 +445,6 @@ leads to a simple linear model published in `r Citet(myBib,"michelot2019langevin
     	
     	
 ---
----
 
 # Potential based Diffusions as continuous time movement model 
 
@@ -501,9 +468,11 @@ leads to a simple linear model published in `r Citet(myBib,"michelot2019langevin
 </figure>
 ]
 
+--
 
+.small[ On going work on Sea birds in the Mediteranean sea and Roe deer next to Toulouse]
 ---
-# Perspectives
+# On going work
 
 ### Some natural extension of the Langevin model useful in movement ecology
 
@@ -511,9 +480,21 @@ leads to a simple linear model published in `r Citet(myBib,"michelot2019langevin
 <figure>
   <img src="DAG4.png" alt="at the beginning is" style="width:60%" class = "centerimg" />
 </figure>
+
+* Change the Langevin model for an hypoellitptic approach
+$$
+	d X_t = V_t dt; 
+	$$
+	$$
+	d V_t = - \nabla \log \pi{\left(X_t\right)} \, d t  -\frac{\nu^2}{2} V_t + \nu \,d W_t,\quad X_0 =x_0.
+$$
+
+---
+# Perspectives 
+
+### Some natural extension of the Langevin model useful in movement ecology
+
 * Introduction of an individual random effect,
-
-
 
 ###  Handling categorical covariates
 `r Citet(myBib, "lejay2018maximum")` define a threshold diffusion and proposes an ML estimation method. Explore the generalisation to $\mathbb{R}^2$. 
