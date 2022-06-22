@@ -16,6 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Statistical methods for movement ecology
 ### Marie-Pierre Etienne
+### Ecodep
 ### 2022
 
 ---
@@ -216,8 +217,10 @@ Often analysed using discrete time model  &lt;a name=cite-mcclintock2014discrete
 
 
 ---
+name:signal
 
-# Segmentation 
+# Signal processing methods 
+--
 
 ##  Heterogeneity in movement pattern interpretated as different internal states
 
@@ -231,29 +234,22 @@ Often analysed using discrete time model  &lt;a name=cite-mcclintock2014discrete
 .pull-right[
 ## Accounting for internal states
 
-Classically addressed with Hidden Markov Model 
+ * Classically addressed with Hidden Markov Model &lt;a name=cite-morales2004extracting&gt;&lt;/a&gt;&lt;a name=cite-walker2010pioneer&gt;&lt;/a&gt;&lt;a name=cite-gurarie2009novel&gt;&lt;/a&gt;&lt;a name=cite-michelot2016movehmm&gt;&lt;/a&gt;([Morales, Haydon, Frair, et al., 2004](#bib-morales2004extracting); [Walker and Bez, 2010](#bib-walker2010pioneer); [Gurarie, Andrews, and Laidre, 2009](#bib-gurarie2009novel); [Michelot, Langrock, and Patterson, 2016](#bib-michelot2016movehmm))
 
-
-### Exploring the change point detection approach. &lt;a name=cite-lavielle2005using&gt;&lt;/a&gt;&lt;a name=cite-picard2007segmentation&gt;&lt;/a&gt;([Lavielle, 2005](#bib-lavielle2005using); [Picard, Robin, Lebarbier, et al., 2007](#bib-picard2007segmentation))
+ * or change point detection approach. &lt;a name=cite-patin2019identifying&gt;&lt;/a&gt;([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying)) based on &lt;a name=cite-picard2007segmentation&gt;&lt;/a&gt;([Picard, Robin, Lebarbier, et al., 2007](#bib-picard2007segmentation))
 ]
 
 ---
 
-# Segmentation 
+template: signal
 
-
-## Signal processing approach for movement ecology ([Picard, Robin, Lebarbier, et al., 2007](#bib-picard2007segmentation))
 
 
 .pull-left[
 &lt;figure&gt;
   &lt;img src="segmentation.png" alt="at the beginning is" style="width:90%" class = "centerimg" /&gt;
-.legend[Change point detection &lt;a name=cite-patin2019identifying&gt;&lt;/a&gt;([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying))]
+.legend[Change point detection ([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying))]
 &lt;/figure&gt;
-
-Let `\(\boldsymbol{\tau}={\tau_1,...,\tau_{K-1}}\)` ( `\(\tau_0=-1\)` ) be a partition in K segments of `\(\{1,\ldots n\}\)`
-`$$\boldsymbol{X}_{i}\overset{i.i.d}{\sim}\mathcal{L}(\theta_k),\quad \forall i \in \{ \tau_{k-1}+1:\tau_k \}$$`
-The .care[Dynamic Programming algorithm] allows to explore efficiently all possible segmentation and to estimate `\(\boldsymbol{\hat{\tau}}\)`
 ]
 
 
@@ -263,40 +259,13 @@ The .care[Dynamic Programming algorithm] allows to explore efficiently all possi
   &lt;img src="seg_classification.png" alt="at the beginning is" style="width:90%" class = "centerimg" /&gt;
  .legend[Change point detection and classification ([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying))]
 &lt;/figure&gt;
-
-Let  `\(Z_k\)` stand for the class of segment `\(k,\)` `\(\forall i \in \{ \tau_{k-1}+1:\tau_k \}\)` 
-`$$Z_k \overset{i.i.d}{\sim} \mathcal{M}(\pi), \quad\boldsymbol{X}_{i}\vert Z_k=l \overset{i.i.d}{\sim}\mathcal{L}(\theta_l)$$`
-The Dynamic Programming coupled with EM algorithm allows to explore efficiently all possible segmentation and to estimate `\(\boldsymbol{\hat{\tau}}\)`
 ]
 
 --
 
 In  ([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying)) : a direct extension to simultaneous segmentation for home range shift.
+--
 
-
----
-
-# Segmentation 
-
-
-## Signal processing approach for movement ecology ([Lavielle, 2005](#bib-lavielle2005using); [Picard, Robin, Lebarbier, et al., 2007](#bib-picard2007segmentation))
-
-
-.pull-left[
-&lt;figure&gt;
-  &lt;img src="segmentation.png" alt="at the beginning is" style="width:90%" class = "centerimg" /&gt;
- .legend[Change point detection ([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying))]
-&lt;/figure&gt;
-
-]
-
-
-.pull-right[
-&lt;figure&gt;
-  &lt;img src="seg_classification.png" alt="at the beginning is" style="width:90%" class = "centerimg" /&gt;
-  .legend[Change point detection and classification ([Patin, Etienne, Lebarbier, et al., 2019](#bib-patin2019identifying))]
-&lt;/figure&gt;
-]
 
 .question[Movement path is more than time series, importance of considering the space.]
 
@@ -466,7 +435,6 @@ leads to a simple linear model published in &lt;a name=cite-michelot2019langevin
     	
     	
 ---
----
 
 # Potential based Diffusions as continuous time movement model 
 
@@ -490,9 +458,11 @@ leads to a simple linear model published in &lt;a name=cite-michelot2019langevin
 &lt;/figure&gt;
 ]
 
+--
 
+.small[ On going work on Sea birds in the Mediteranean sea and Roe deer next to Toulouse]
 ---
-# Perspectives
+# On going work
 
 ### Some natural extension of the Langevin model useful in movement ecology
 
@@ -500,9 +470,21 @@ leads to a simple linear model published in &lt;a name=cite-michelot2019langevin
 &lt;figure&gt;
   &lt;img src="DAG4.png" alt="at the beginning is" style="width:60%" class = "centerimg" /&gt;
 &lt;/figure&gt;
+
+* Change the Langevin model for an hypoellitptic approach
+$$
+	d X_t = V_t dt; 
+	$$`
+	$$`
+	d V_t = - \nabla \log \pi{\left(X_t\right)} \, d t  -\frac{\nu^2}{2} V_t + \nu \,d W_t,\quad X_0 =x_0.
+$$
+
+---
+# Perspectives 
+
+### Some natural extension of the Langevin model useful in movement ecology
+
 * Introduction of an individual random effect,
-
-
 
 ###  Handling categorical covariates
 &lt;a name=cite-lejay2018maximum&gt;&lt;/a&gt;[Lejay and Pigato (2018)](#bib-lejay2018maximum) define a threshold diffusion and proposes an ML estimation method. Explore the generalisation to `\(\mathbb{R}^2\)`. 
@@ -559,14 +541,15 @@ data in ecology". In: _Journal of the Royal Statistical Society: Series
 C (Applied Statistics)_ 67.3, pp. 599-619. DOI:
 [10.1111/rssc.12251](https://doi.org/10.1111%2Frssc.12251).
 
+&lt;a name=bib-gurarie2009novel&gt;&lt;/a&gt;[Gurarie, E., R. D. Andrews, and K. L.
+Laidre](#cite-gurarie2009novel) (2009). "A novel method for identifying
+behavioural changes in animal movement data". In: _Ecology Letters_
+12.5, pp. 395-408.
+
 &lt;a name=bib-kessler1997estimation&gt;&lt;/a&gt;[Kessler,
 M.](#cite-kessler1997estimation) (1997). "Estimation of an ergodic
 diffusion from discrete observations". In: _Scandinavian Journal of
 Statistics_ 24.2, pp. 211-229.
-
-&lt;a name=bib-lavielle2005using&gt;&lt;/a&gt;[Lavielle,
-M.](#cite-lavielle2005using) (2005). "Using penalized contrasts for the
-change-point problem". In: _Signal processing_ 85.8, pp. 1501-1510.
 
 &lt;a name=bib-lejay2018maximum&gt;&lt;/a&gt;[Lejay, A. and P.
 Pigato](#cite-lejay2018maximum) (2018). "Maximum likelihood drift
@@ -600,10 +583,28 @@ Blackwell, et al.](#cite-michelot2019langevin) (2019). "The Langevin
 diffusion as a continuous-time model of animal movement and habitat
 selection". In: _Methods in Ecology and Evolution_.
 
+&lt;a name=bib-michelot2016movehmm&gt;&lt;/a&gt;[Michelot, T., R. Langrock, and T.
+A. Patterson](#cite-michelot2016movehmm) (2016). "moveHMM: an R package
+for the statistical modelling of animal movement data using hidden
+Markov models". In: _Methods in Ecology and Evolution_ 7.11, pp.
+1308-1315.
+
+&lt;a name=bib-morales2004extracting&gt;&lt;/a&gt;[Morales, J. M., D. T. Haydon, J.
+Frair, et al.](#cite-morales2004extracting) (2004). "Extracting more
+out of relocation data: building movement models as mixtures of random
+walks". In: _Ecology_ 85.9, pp. 2436-2445.
+
 &lt;a name=bib-nathan2008movement&gt;&lt;/a&gt;[Nathan, R., W. M. Getz, E. Revilla,
 et al.](#cite-nathan2008movement) (2008). "A movement ecology paradigm
 for unifying organismal movement research". In: _Proceedings of the
 National Academy of Sciences_ 105.49, pp. 19052-19059.
+
+
+---
+class: biblio
+count: false
+# Bibliography
+&lt;img class="logopos_right" src="article.png" style="height:6%"&gt;
 
 &lt;a name=bib-olsson2017efficient&gt;&lt;/a&gt;[Olsson, J. and J.
 Westerborn](#cite-olsson2017efficient) (2017). "Efficient
@@ -614,24 +615,6 @@ PaRIS algorithm". In: _Bernoulli_ 23.3, pp. 1951-1996.
 (1992). "A bridge between nonlinear time series models and nonlinear
 stochastic dynamical systems: a local linearization approach". In:
 _Statistica Sinica_, pp. 113-135.
-
-
----
-class: biblio
-count: false
-# Bibliography
-&lt;img class="logopos_right" src="article.png" style="height:6%"&gt;
-
-&lt;a name=bib-patin2019identifying&gt;&lt;/a&gt;[Patin, R., M. Etienne, E.
-Lebarbier, et al.](#cite-patin2019identifying) (2019). "Identifying
-stationary phases in multivariate time series for highlighting
-behavioural modes and home range settlements". In: _Journal of Animal
-Ecology_.
-
-&lt;a name=bib-picard2007segmentation&gt;&lt;/a&gt;[Picard, F., S. Robin, E.
-Lebarbier, et al.](#cite-picard2007segmentation) (2007). "A
-segmentation/clustering model for the analysis of array CGH data". In:
-_Biometrics_ 63.3, pp. 758-766.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
